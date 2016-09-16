@@ -1,0 +1,393 @@
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "music_services"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "music_services" ("name", "endpoint", "created_at", "updated_at", "id", "user_id") VALUES ('Test', 'https://test.com', '2016-05-06 02:15:44', '2016-05-06 02:15:44', 1037848090, 149617800)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "music_services" ("name", "endpoint", "created_at", "updated_at", "id", "user_id") VALUES ('Fake', 'http://fake.com', '2016-05-06 02:15:44', '2016-05-06 02:15:44', 585423320, 149617800)[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "id") VALUES ('test@test.com', '$2a$04$Zs.XllRPRiLI2h3.TTumIOPg/mgBu2oj2RxZ4.lGNldZULmtt1bU6', '2016-05-06 02:15:44', '2016-05-06 02:15:44', 149617800)[0m
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------------
+ApplicationHelperTest: test_can_return_correct_flash_class
+----------------------------------------------------------
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------
+DirectionsControllerTest: test_should_get_index
+-----------------------------------------------
+Processing by DirectionsController#index as HTML
+  Rendered directions/index.html.slim within layouts/application (14.2ms)
+  Rendered shared/_header.html.slim (27.5ms)
+  Rendered shared/_flash.html.slim (4.5ms)
+Completed 200 OK in 377ms (Views: 376.9ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+--------------------------------------------------
+MusicServicesControllerTest: test_should_get_index
+--------------------------------------------------
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.2ms)[0m  [1mSELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1[0m  [["user_id", 149617800]]
+Processing by MusicServicesController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.2ms)[0m  [1mSELECT "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?[0m  [["user_id", 149617800]]
+  Rendered music_services/index.html.slim within layouts/application (36.3ms)
+  Rendered shared/_header.html.slim (0.6ms)
+  Rendered shared/_flash.html.slim (0.0ms)
+Completed 200 OK in 53ms (Views: 45.0ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------------------
+MusicServicesControllerTest: test_should_create_music_service
+-------------------------------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.0ms)[0m  [1mSELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1[0m  [["user_id", 149617800]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "music_services"
+Processing by MusicServicesController#create as HTML
+  Parameters: {"music_service"=>{"endpoint"=>"http://fake.com", "name"=>"Fake"}}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 149617800]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "music_services" ("name", "endpoint", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Fake"], ["endpoint", "http://fake.com"], ["user_id", 149617800], ["created_at", "2016-05-06 02:15:45.059124"], ["updated_at", "2016-05-06 02:15:45.059124"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/music_services/1037848091
+Completed 302 Found in 5ms (ActiveRecord: 0.4ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "music_services"[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------------------
+MusicServicesControllerTest: test_should_not_create_music_service
+-----------------------------------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.1ms)[0m  [1mSELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1[0m  [["user_id", 149617800]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "music_services"
+Processing by MusicServicesController#create as HTML
+  Parameters: {"music_service"=>{"name"=>"Fake"}}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 149617800]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  Rendered music_services/_form.html.slim (17.8ms)
+  Rendered music_services/new.html.slim within layouts/application (23.7ms)
+  Rendered shared/_header.html.slim (0.8ms)
+  Rendered shared/_flash.html.slim (0.1ms)
+Completed 200 OK in 32ms (Views: 29.4ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "music_services"
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+--------------------------------------------------------------
+MusicServicesControllerTest: test_should_destroy_music_service
+--------------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 149617800]]
+  [1m[35mMusicService Load (0.0ms)[0m  SELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1  [["user_id", 149617800]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "music_services"[0m
+Processing by MusicServicesController#destroy as HTML
+  Parameters: {"id"=>"585423320"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.1ms)[0m  [1mSELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ? AND "music_services"."id" = ? LIMIT 1[0m  [["user_id", 149617800], ["id", 585423320]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "music_services" WHERE "music_services"."id" = ?[0m  [["id", 585423320]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/music_services
+Completed 302 Found in 3ms (ActiveRecord: 0.5ms)
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "music_services"[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------------------
+MusicServicesControllerTest: test_should_update_music_service
+-------------------------------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.0ms)[0m  [1mSELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1[0m  [["user_id", 149617800]]
+Processing by MusicServicesController#update as HTML
+  Parameters: {"music_service"=>{"endpoint"=>"http://fake.com", "name"=>"Fake"}, "id"=>"585423320"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.0ms)[0m  [1mSELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ? AND "music_services"."id" = ? LIMIT 1[0m  [["user_id", 149617800], ["id", 585423320]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/music_services/585423320
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------
+MusicServicesControllerTest: test_should_get_edit
+-------------------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.0ms)[0m  [1mSELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1[0m  [["user_id", 149617800]]
+Processing by MusicServicesController#edit as HTML
+  Parameters: {"id"=>"585423320"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.1ms)[0m  [1mSELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ? AND "music_services"."id" = ? LIMIT 1[0m  [["user_id", 149617800], ["id", 585423320]]
+  Rendered music_services/_form.html.slim (1.4ms)
+  Rendered music_services/edit.html.slim within layouts/application (4.6ms)
+  Rendered shared/_header.html.slim (0.5ms)
+  Rendered shared/_flash.html.slim (0.0ms)
+Completed 200 OK in 10ms (Views: 8.7ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------------------
+MusicServicesControllerTest: test_should_not_update_music_service
+-----------------------------------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.1ms)[0m  [1mSELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1[0m  [["user_id", 149617800]]
+Processing by MusicServicesController#update as HTML
+  Parameters: {"music_service"=>{"name"=>nil}, "id"=>"585423320"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.1ms)[0m  [1mSELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ? AND "music_services"."id" = ? LIMIT 1[0m  [["user_id", 149617800], ["id", 585423320]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  Rendered music_services/_form.html.slim (2.4ms)
+  Rendered music_services/edit.html.slim within layouts/application (2.7ms)
+  Rendered shared/_header.html.slim (0.6ms)
+  Rendered shared/_flash.html.slim (0.0ms)
+Completed 200 OK in 9ms (Views: 5.8ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------------
+MusicServicesControllerTest: test_should_show_music_service
+-----------------------------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.0ms)[0m  [1mSELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1[0m  [["user_id", 149617800]]
+Processing by MusicServicesController#show as HTML
+  Parameters: {"id"=>"585423320"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.0ms)[0m  [1mSELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ? AND "music_services"."id" = ? LIMIT 1[0m  [["user_id", 149617800], ["id", 585423320]]
+  Rendered music_services/show.html.slim within layouts/application (4.0ms)
+  Rendered shared/_header.html.slim (14.8ms)
+  Rendered shared/_flash.html.slim (0.1ms)
+Completed 200 OK in 24ms (Views: 22.7ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+MusicServicesControllerTest: test_should_get_new
+------------------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.0ms)[0m  [1mSELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1[0m  [["user_id", 149617800]]
+Processing by MusicServicesController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 149617800]]
+  Rendered music_services/_form.html.slim (1.6ms)
+  Rendered music_services/new.html.slim within layouts/application (1.9ms)
+  Rendered shared/_header.html.slim (0.6ms)
+  Rendered shared/_flash.html.slim (0.0ms)
+Completed 200 OK in 6ms (Views: 4.8ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (2.0ms)[0m  [1mCREATE TABLE "music_services" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "name" varchar NOT NULL, "endpoint" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX "index_music_services_on_user_id" ON "music_services" ("user_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160422195416')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160422164317')
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateLogos (20160506022340)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "logos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160506022340"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_music_services_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_music_services_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "logos"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "logos" ("created_at", "updated_at", "id") VALUES ('2016-05-16 19:00:25', '2016-05-16 19:00:25', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "logos" ("created_at", "updated_at", "id") VALUES ('2016-05-16 19:00:25', '2016-05-16 19:00:25', 298486374)[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "music_services"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "music_services" ("name", "endpoint", "created_at", "updated_at", "id", "user_id") VALUES ('Test', 'https://test.com', '2016-05-16 19:00:25', '2016-05-16 19:00:25', 1037848090, 149617800)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "music_services" ("name", "endpoint", "created_at", "updated_at", "id", "user_id") VALUES ('Fake', 'http://fake.com', '2016-05-16 19:00:25', '2016-05-16 19:00:25', 585423320, 149617800)
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "users"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "id") VALUES ('test@test.com', '$2a$04$4xSyvsanEcGIcsOyym79s.VJYfMdQxRa8jywKKlWPxBMp7KAmc.2e', '2016-05-16 19:00:25', '2016-05-16 19:00:25', 149617800)
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-----------------------------------------------
+DirectionsControllerTest: test_should_get_index
+-----------------------------------------------
+Processing by DirectionsController#index as HTML
+  Rendered directions/index.html.slim within layouts/application (15.6ms)
+  Rendered shared/_header.html.slim (27.9ms)
+  Rendered shared/_flash.html.slim (4.2ms)
+Completed 200 OK in 411ms (Views: 410.3ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-------------------------------------------------------------
+MusicServicesControllerTest: test_should_create_music_service
+-------------------------------------------------------------
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 149617800]]
+  [1m[35mMusicService Load (0.2ms)[0m  SELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1  [["user_id", 149617800]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "music_services"[0m
+Processing by MusicServicesController#create as HTML
+  Parameters: {"music_service"=>{"endpoint"=>"http://fake.com", "name"=>"Fake"}}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 149617800]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "music_services" ("name", "endpoint", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Fake"], ["endpoint", "http://fake.com"], ["user_id", 149617800], ["created_at", "2016-05-16 19:00:25.635308"], ["updated_at", "2016-05-16 19:00:25.635308"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/music_services/1037848091
+Completed 302 Found in 11ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "music_services"
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+-----------------------------------------------------------------
+MusicServicesControllerTest: test_should_not_update_music_service
+-----------------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 149617800]]
+  [1m[35mMusicService Load (0.1ms)[0m  SELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1  [["user_id", 149617800]]
+Processing by MusicServicesController#update as HTML
+  Parameters: {"music_service"=>{"name"=>nil}, "id"=>"585423320"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 149617800]]
+  [1m[35mMusicService Load (0.1ms)[0m  SELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ? AND "music_services"."id" = ? LIMIT 1  [["user_id", 149617800], ["id", 585423320]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  Rendered music_services/_form.html.slim (19.4ms)
+  Rendered music_services/edit.html.slim within layouts/application (24.9ms)
+  Rendered shared/_header.html.slim (0.6ms)
+  Rendered shared/_flash.html.slim (0.0ms)
+Completed 200 OK in 38ms (Views: 33.9ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+-------------------------------------------------------------
+MusicServicesControllerTest: test_should_update_music_service
+-------------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 149617800]]
+  [1m[35mMusicService Load (0.0ms)[0m  SELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1  [["user_id", 149617800]]
+Processing by MusicServicesController#update as HTML
+  Parameters: {"music_service"=>{"endpoint"=>"http://fake.com", "name"=>"Fake"}, "id"=>"585423320"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 149617800]]
+  [1m[35mMusicService Load (0.0ms)[0m  SELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ? AND "music_services"."id" = ? LIMIT 1  [["user_id", 149617800], ["id", 585423320]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/music_services/585423320
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms)
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-----------------------------------------------------------
+MusicServicesControllerTest: test_should_show_music_service
+-----------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 149617800]]
+  [1m[35mMusicService Load (0.0ms)[0m  SELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1  [["user_id", 149617800]]
+Processing by MusicServicesController#show as HTML
+  Parameters: {"id"=>"585423320"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 149617800]]
+  [1m[35mMusicService Load (0.0ms)[0m  SELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ? AND "music_services"."id" = ? LIMIT 1  [["user_id", 149617800], ["id", 585423320]]
+  Rendered music_services/show.html.slim within layouts/application (4.0ms)
+  Rendered shared/_header.html.slim (0.6ms)
+  Rendered shared/_flash.html.slim (0.0ms)
+Completed 200 OK in 10ms (Views: 8.4ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+-----------------------------------------------------------------
+MusicServicesControllerTest: test_should_not_create_music_service
+-----------------------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 149617800]]
+  [1m[35mMusicService Load (0.0ms)[0m  SELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1  [["user_id", 149617800]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "music_services"[0m
+Processing by MusicServicesController#create as HTML
+  Parameters: {"music_service"=>{"name"=>"Fake"}}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 149617800]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  Rendered music_services/_form.html.slim (2.0ms)
+  Rendered music_services/new.html.slim within layouts/application (5.5ms)
+  Rendered shared/_header.html.slim (0.5ms)
+  Rendered shared/_flash.html.slim (0.0ms)
+Completed 200 OK in 12ms (Views: 9.9ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "music_services"[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+--------------------------------------------------
+MusicServicesControllerTest: test_should_get_index
+--------------------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.1ms)[0m  [1mSELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1[0m  [["user_id", 149617800]]
+Processing by MusicServicesController#index as HTML
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.2ms)[0m  [1mSELECT "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?[0m  [["user_id", 149617800]]
+  Rendered music_services/index.html.slim within layouts/application (10.6ms)
+  Rendered shared/_header.html.slim (0.8ms)
+  Rendered shared/_flash.html.slim (0.1ms)
+Completed 200 OK in 17ms (Views: 15.8ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------------------------------
+MusicServicesControllerTest: test_should_destroy_music_service
+--------------------------------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.1ms)[0m  [1mSELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1[0m  [["user_id", 149617800]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "music_services"
+Processing by MusicServicesController#destroy as HTML
+  Parameters: {"id"=>"585423320"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 149617800]]
+  [1m[35mMusicService Load (0.1ms)[0m  SELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ? AND "music_services"."id" = ? LIMIT 1  [["user_id", 149617800], ["id", 585423320]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM "music_services" WHERE "music_services"."id" = ?  [["id", 585423320]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/music_services
+Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "music_services"
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+------------------------------------------------
+MusicServicesControllerTest: test_should_get_new
+------------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 149617800]]
+  [1m[35mMusicService Load (0.0ms)[0m  SELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1  [["user_id", 149617800]]
+Processing by MusicServicesController#new as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 149617800]]
+  Rendered music_services/_form.html.slim (1.3ms)
+  Rendered music_services/new.html.slim within layouts/application (1.6ms)
+  Rendered shared/_header.html.slim (0.6ms)
+  Rendered shared/_flash.html.slim (0.0ms)
+Completed 200 OK in 18ms (Views: 16.3ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------
+MusicServicesControllerTest: test_should_get_edit
+-------------------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.0ms)[0m  [1mSELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ?  ORDER BY "music_services"."id" ASC LIMIT 1[0m  [["user_id", 149617800]]
+Processing by MusicServicesController#edit as HTML
+  Parameters: {"id"=>"585423320"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 149617800]]
+  [1m[36mMusicService Load (0.1ms)[0m  [1mSELECT  "music_services".* FROM "music_services" WHERE "music_services"."user_id" = ? AND "music_services"."id" = ? LIMIT 1[0m  [["user_id", 149617800], ["id", 585423320]]
+  Rendered music_services/_form.html.slim (1.6ms)
+  Rendered music_services/edit.html.slim within layouts/application (1.9ms)
+  Rendered shared/_header.html.slim (0.7ms)
+  Rendered shared/_flash.html.slim (0.1ms)
+Completed 200 OK in 7ms (Views: 5.1ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------------
+ApplicationHelperTest: test_can_return_correct_flash_class
+----------------------------------------------------------
+  [1m[35m (0.0ms)[0m  rollback transaction

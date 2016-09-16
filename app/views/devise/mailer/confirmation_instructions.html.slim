@@ -1,0 +1,5 @@
+p = t('devise.mailer.confirmation_instructions.welcome', :display_name => @user.display_name)
+
+p = t('devise.mailer.confirmation_instructions.confirm')
+
+p = link_to t('devise.mailer.confirmation_instructions.confirm_link'), confirmation_url(@resource, :confirmation_token => @token)

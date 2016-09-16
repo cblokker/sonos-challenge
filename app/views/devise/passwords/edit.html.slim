@@ -1,0 +1,29 @@
+.section
+  .row
+    .columns.small-12.medium-7.medium-centered
+      p.light = t('devise.passwords.edit.title')
+      = form_for(resource, as: resource_name, url: password_path(resource_name), method: :put, data: { abide: '' }) do |f|
+        - if !resource.errors.empty?
+          = render 'devise/shared/devise_errors'
+        .row
+          .columns.small-12.field
+            = f.label :password
+              span = t('devise.passwords.edit.fields.password')
+              span.icon-help-circled[data-tooltip title=t('errors.abide.password')]
+            = f.password_field :password, autocomplete: :off, required: true, pattern: :devise_password
+            small.error = t('errors.abide.password')
+
+        .row
+          .columns.small-12.field
+            = f.label :password_confirmation, t('devise.passwords.edit.fields.confirm_password')
+            = f.password_field :password_confirmation, autocomplete: :off, required: true, data: { equalto: :user_password }
+            small.error = t('errors.abide.password_confirmation')
+        .row
+          .columns.small-12.field
+            = f.hidden_field :reset_password_token
+        .row
+          .columns.small-12.actions
+            = f.submit t('devise.passwords.edit.submit'), class: 'expand button'
+.row
+  .columns.small-12
+    = render 'devise/shared/links'

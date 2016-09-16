@@ -1,0 +1,5 @@
+<%= t('devise.mailer.confirmation_instructions.welcome', :display_name => @user.display_name) %>
+
+<%= t('devise.mailer.confirmation_instructions.confirm') %>
+
+<%= confirmation_url(@resource, :confirmation_token => @token) %>

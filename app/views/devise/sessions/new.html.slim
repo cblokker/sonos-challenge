@@ -1,0 +1,23 @@
+.section
+  .row
+    .columns.small-12.medium-7.medium-centered
+      = form_for(resource, as: resource_name, url: session_path(resource_name), data: { abide: '' }) do |f|
+        .row
+          .columns.small-12.field
+            = f.label :email, t('devise.sessions.new.fields.email')
+            = f.email_field :email, autofocus: true, required: true
+            small.error = t('errors.abide.email')
+        .row
+          .columns.small-12.field
+            = f.label :password, t('devise.sessions.new.fields.password')
+            = f.password_field :password, autocomplete: :off, required: true
+            small.error = t('errors.abide.password')
+        - if devise_mapping.rememberable?
+          .row
+            .columns.small-12.field
+              = f.check_box :remember_me
+              = f.label :remember_me, t('devise.sessions.new.fields.remember_me'), class: 'remember-me-label'
+        .row
+          .columns.small-12.actions
+            = f.submit t('devise.sessions.new.submit'), class: [:expand, :button]
+      = render 'devise/shared/links'

@@ -1,0 +1,16 @@
+doctype html
+html.no-js lang="#{I18n.locale}"
+  head
+    title Sonos Rails Interview Project
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"
+    = stylesheet_link_tag 'application', 'https://static.sonos.com/v2/stage/styles/min/suit.css'
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body.antialiased[data-init]
+    = render 'shared/header'
+    = render 'shared/flash'
+    = yield
+    script src="https://static.sonos.com/v2/live/scripts/src/suit.js"
+    = javascript_include_tag :application

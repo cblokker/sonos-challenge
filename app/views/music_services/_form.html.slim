@@ -1,0 +1,18 @@
+= form_for @music_service, data: { abide: '' } do |f|
+  - if @music_service.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@music_service.errors.count, 'error')} prohibited this music_service from being saved:"
+      ul
+        - @music_service.errors.full_messages.each do |message|
+          li = message
+  .field
+    = f.label :name
+    = f.text_field :name, required: true
+    small.error = t('music_services.form.errors.name')
+  .field
+    = f.label :endpoint
+    = f.text_field :endpoint, required: true, pattern: :url
+    small.error = t('music_services.form.errors.endpoint')
+  ul.button-group.right
+    li = f.submit t('music_services.form.buttons.save'), class: [:small, :button]
+    li = link_to t('music_services.form.buttons.cancel'), music_services_path, class: [:small, :button]

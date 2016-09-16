@@ -1,0 +1,45 @@
+.section
+  .row
+    .columns.small-12.medium-8.large-6.small-centered
+      h2 = t('devise.registrations.edit.title', resource_name: resource_name.to_s.humanize)
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), method: :put, data: { abide: '' }) do |f|
+        - if !resource.errors.empty?
+          = render 'devise/shared/devise_errors'
+        .row
+          .columns.small-12.field
+            = f.label :email
+            = f.email_field :email, autofocus: true, required: true
+            small.error = t('errors.abide.email')
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          .row
+            .columns.small-12
+              = t('devise.registrations.edit.unconfirmed_email', email: resource.unconfirmed_email )
+        .row
+          .columns.small-12.field
+            = f.label :current_password
+              span Current Password
+              span.icon-help-circled[data-tooltip title=t('.tooltips.current_password')]
+            = f.password_field :current_password, autocomplete: :off, required: true
+            small.error = t('errors.abide.current_password')
+        .row
+          .columns.small-12.field
+            = f.label :password
+              span New Password
+              span.icon-help-circled[data-tooltip title=t('.tooltips.password')]
+            = f.password_field :password, autocomplete: :off, pattern: :devise_password
+            small.error = t('errors.abide.password')
+        .row
+          .columns.small-12.field
+            = f.label :password_confirmation, 'New Password Confirmation'
+            = f.password_field :password_confirmation, autocomplete: :off, data: { equalto: :user_password }
+            small.error = t('errors.abide.password_confirmation')
+        .row
+          .columns.small-12.actions
+            = f.submit t('devise.registrations.edit.submit'), class: [:button, :expand]
+.row
+  .columns.small-14
+    hr
+    p.right
+      = t('devise.registrations.edit.cancel_label')
+      | &nbsp;
+      = link_to t('devise.registrations.edit.cancel_link'), registration_path(resource_name), data: { confirm: true }, method: :delete

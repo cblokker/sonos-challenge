@@ -1,0 +1,28 @@
+.section
+  .row
+    .small-12.columns
+      h1 = t('music_services.index.title')
+      table.table-saw.light
+        thead
+          tr
+            th = t('music_services.labels.name')
+            th = t('music_services.labels.endpoint')
+            th
+        tbody
+          - @music_services.each do |music_service|
+            tr
+              td
+                = music_service.name
+              td
+                = music_service.endpoint
+              td
+                ul.button-group.right
+                  li = link_to music_service
+                    span.icon-ellipsis
+                  li = link_to edit_music_service_path(music_service)
+                    span.icon-cog
+                  li = link_to music_service, data: {confirm: 'Are you sure?'}, method: :delete
+                    span.icon-cancel-circled
+
+      = link_to new_music_service_path, class: [:button, :right]
+        span.icon-plus

@@ -1,0 +1,12 @@
+.section
+  .row
+    .small-12.columns
+      ul.button-group.right
+        li = link_to 'Edit', edit_music_service_path(@music_service), class: [:tiny, :button]
+        li = link_to 'Back', music_services_path, class: [:tiny, :button]
+      p
+        strong = t('music_services.labels.name')
+      p = @music_service.name
+      p
+        strong = t('music_services.labels.endpoint')
+      p = @music_service.endpoint

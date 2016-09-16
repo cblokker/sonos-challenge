@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+test_service:
+  name: Test
+  endpoint: https://test.com
+  user: test_user
+
+fake_service:
+  name: Fake
+  endpoint: http://fake.com
+  user: test_user
